@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="IfxWPClient.Views.NewsList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    DataContext="{Binding Source={StaticResource Locator}, Path=NewsListViewModel}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    <UserControl.Resources>
+        <DataTemplate x:Key="NewsTemplate">
+            <StackPanel Margin="0,0,0,15">
+                <Button Command="{Binding ElementName=ContentPanel, Path=DataContext.ClickNewsItemCommand}" CommandParameter="{Binding Id}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding CreateDate}" Foreground="#09abb0" FontSize="15"/>
+                                <TextBlock Text="{Binding Headline}" FontStyle="Normal" FontSize="18" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </DataTemplate>
+        </UserControl.Resources>
+    <Grid x:Name="ContentPanel" DataContext="{Binding}">
+        <ListBox ItemTemplate="{StaticResource NewsTemplate}" ItemsSource="{Binding News}" Margin="6" />
+    </Grid>
+</UserControl>
