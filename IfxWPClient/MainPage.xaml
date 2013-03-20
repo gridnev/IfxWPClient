@@ -10,15 +10,15 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:myControls="clr-namespace:IfxWPClient.Views;assembly=IfxWPClient"
     xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="#242834">
     <Grid x:Name="LayoutRoot" Background="#242834">
         <!--Panorama control-->
-        <controls:Panorama>
+        <controls:Panorama HorizontalAlignment="Left" Width="480">
             <controls:Panorama.Title>
                 <StackPanel Orientation="Vertical" Margin="0,80,0,0">
                     <Image x:Name="icon" Source="/Images/logo.png" Height="65" Width="223"/>
@@ -43,4 +43,7 @@
             <shell:ApplicationBarIconButton IconUri="/Images/refresh.png" Text="Обновить" Click="ApplicationBarIconButton_Click_1" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator x:Name="ProgressIndicator" IsIndeterminate="true" IsVisible="False" Text="Обновление..." />
+    </shell:SystemTray.ProgressIndicator>
 </phone:PhoneApplicationPage>

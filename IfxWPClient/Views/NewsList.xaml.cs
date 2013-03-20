@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -23,7 +24,7 @@ namespace IfxWPClient.Views
         {
             var model = ((NewsListViewModel)DataContext);
             if (model != null)
-                model.LoadNews(DateTime.Now.AddHours(-1));
+                model.LoadNews(DateTime.Now.AddHours(-24));
         }
     }
 }

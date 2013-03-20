@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using Microsoft.Phone.Shell;
 
 namespace IfxWPClient.ViewModels
 {
@@ -24,6 +25,14 @@ namespace IfxWPClient.ViewModels
             }
         }
 
+        private bool Busy
+        {
+            set
+            {
+                SystemTray.ProgressIndicator.IsVisible = value;
+            }
+        }
+
         private string _content;
         public string Content
         {
@@ -32,6 +41,8 @@ namespace IfxWPClient.ViewModels
             {
                 _content = value;
                 NotifyPropertyChanged("Content");
+
+                Busy = false;
             }
         }
 
@@ -57,7 +68,6 @@ namespace IfxWPClient.ViewModels
             }
         }
 
-
         public NewsViewModel(INewsDataSource source)
         {
             _source = source;
@@ -65,6 +75,7 @@ namespace IfxWPClient.ViewModels
 
         public void LoadNewsItem(string newsId)
         {
+            Busy = true;
             this._source.GetFreeNewsById(newsId, r => NewsItem = r);
         }
 

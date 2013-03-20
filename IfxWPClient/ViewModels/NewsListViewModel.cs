@@ -15,6 +15,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using Microsoft.Phone.Shell;
 
 namespace IfxWPClient.ViewModels
 {
@@ -29,10 +30,20 @@ namespace IfxWPClient.ViewModels
         {
             get { return _news; }
             set 
-            { 
+            {
                 _news = value;
                 NotifyPropertyChanged("News");
                 LastUpdateTime = News.Max(n => n.CreateDate);
+
+                Busy = false;
+            }
+        }
+
+        private bool Busy
+        {
+            set
+            {
+                SystemTray.ProgressIndicator.IsVisible = value;
             }
         }
 
@@ -41,7 +52,6 @@ namespace IfxWPClient.ViewModels
         public NewsListViewModel(INewsDataSource source)
         {
             _source = source;
-
             /*_lastUpdateTime = DateTime.Now;
             _updateNewsListTimer = new Timer((e) => 
             {
@@ -64,6 +74,7 @@ namespace IfxWPClient.ViewModels
 
         public void LoadNews(DateTime updatemark)
         {
+            Busy = true;
             this._source.GetFreeNewsList(updatemark, r => News = new ObservableCollection<News>(r));
         }
 

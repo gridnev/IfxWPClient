@@ -13,7 +13,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=NewsViewModel}"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="#242834" d:DesignHeight="696" d:DesignWidth="480">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="#242834">
@@ -35,5 +35,14 @@
             <phone:WebBrowser wbh:WebBrowserHelper.Html="{Binding Content}" Background="#242834" Foreground="White" Opacity="0"  />
         </Grid>
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+            <shell:ApplicationBarIconButton IconUri="/Images/refresh.png" Text="Обновить" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator x:Name="ProgressIndicator" IsIndeterminate="true" IsVisible="False" />
+    </shell:SystemTray.ProgressIndicator>
 
 </phone:PhoneApplicationPage>
