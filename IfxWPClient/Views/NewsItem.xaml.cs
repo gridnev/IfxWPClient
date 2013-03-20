@@ -31,5 +31,10 @@ namespace IfxWPClient.Views
                 model.LoadNewsItem(newsId);
             }
         }
+
+        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }
