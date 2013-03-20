@@ -26,5 +26,10 @@ namespace IfxWPClient.Infrastructure
         {
             get { return Factory.Create<NewsViewModel>(); }
         }
+
+        public ArticleListViewModel ArticleListViewModel
+        {
+            get { return Factory.Create<ArticleListViewModel>(); }
+        }
     }
 }

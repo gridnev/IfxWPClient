@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BLL
 {
-    public class NewsCache:INewsDataSource
+    public class NewsCache: INewsDataSource
     {
         List<News> _newsCache;
         NewsSource _newsSource;
@@ -57,6 +57,12 @@ namespace BLL
             }
 
            
+        }
+
+
+        public void GetFreeArticleList(DateTime updatemark, Action<List<Article>> callback)
+        {
+            throw new NotImplementedException();
         }
     }
 }

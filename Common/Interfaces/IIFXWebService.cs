@@ -12,5 +12,8 @@ namespace Common.Interfaces
 
         event EventHandler<MyEventArgs> GetNewsByIdCompleted;
         void GetNewsByIdAsync(string newsId);
+
+        event EventHandler<MyEventArgs> FreeArticleListCompleted;
+        void FreeArticleListAsync(DateTime updatemark);
     }
 }

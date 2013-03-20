@@ -31,5 +31,23 @@ namespace Services
 
             WebServiceCall(_serviceURL, "FreeNewsItem", soapRequest, GetNewsByIdCompleted);
         }
+
+        public event EventHandler<MyEventArgs> FreeArticleListCompleted;
+        public void FreeArticleListAsync(DateTime updatemark)
+        {
+            string reqPattern = "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Body> <faulreq xmlns=\"http://ifx.ru/IFX3WebService\"><mbdm>{0}</mbdm><mbsi i:nil=\"true\" xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" /></faulreq></s:Body></s:Envelope>";
+            string soapRequest = string.Format(reqPattern, updatemark.ToString("yyyy-MM-ddThh:mm:ss"));
+
+            WebServiceCall(_serviceURL, "FreeArticlesUpdateList", soapRequest, FreeArticleListCompleted);
+        }
+
+        public event EventHandler<MyEventArgs> GetImageByArticleIdCompleted;
+        public void GetImageByArticleIdAsync(string newsId)
+        {
+            string reqPattern = "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Body><fnireq xmlns=\"http://ifx.ru/IFX3WebService\"><fniid>{0}</fniid></fnireq></s:Body></s:Envelope>";
+            string soapRequest = string.Format(reqPattern, newsId);
+
+            WebServiceCall(_serviceURL, "FreeNewsItem", soapRequest, GetNewsByIdCompleted);
+        }
     }
 }

@@ -61,6 +61,27 @@ namespace BLL
             _client.GetNewsByIdAsync(newsId);
         }
 
+        public void GetFreeArticleList(DateTime updatemark, Action<List<Article>> callback)
+        {
+            _client.FreeArticleListCompleted += (object sender, MyEventArgs e) =>
+            {
+                var t = XElement.Parse(e.Result);
+                var articleList =
+                    (from node in t.Descendants()
+                     where node.Name.LocalName == "c_freenewsupdate"
+                     select new Article()
+                     {
+                         Id = GetElementValue(node, "id"),
+                         Headline = GetElementValue(node, "t"),
+                         CreateDate = DateTime.Parse(GetElementValue(node, "dc"))
+                     }).ToList();
+
+                callback(articleList);
+            };
+
+            _client.FreeArticleListAsync(updatemark);
+        }
+
         private string GetElementValue(XElement element, string name)
         {
             var elem = element.Descendants().SingleOrDefault(n=>n.Name.LocalName == name);
