@@ -10,8 +10,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Autofac;
 using Common.Interfaces;
-using Services;
 using BLL;
+using Services;
 
 namespace IfxWPClient.Infrastructure
 {

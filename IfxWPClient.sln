@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Phone
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IfxWPClient", "IfxWPClient\IfxWPClient.csproj", "{107B395F-1E06-43B2-9D2E-DA57F9199939}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{80D77969-03A3-4FEC-A167-494242D07E76}"
@@ -8,8 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service1\Service.csproj", "{3120153F-594B-4BE2-BB5F-3EE653DAE857}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{FA128706-F593-43F8-B926-0DA1AD7AB072}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanoramaApp1", "PanoramaApp1\PanoramaApp1.csproj", "{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,16 +53,6 @@ Global
 		{FA128706-F593-43F8-B926-0DA1AD7AB072}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA128706-F593-43F8-B926-0DA1AD7AB072}.Release|ARM.ActiveCfg = Release|Any CPU
 		{FA128706-F593-43F8-B926-0DA1AD7AB072}.Release|x86.ActiveCfg = Release|Any CPU
-		{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}.Release|ARM.ActiveCfg = Release|Any CPU
-		{7C9F54AB-4EEE-44E1-9213-D210FB254A0B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
