@@ -16,17 +16,22 @@ using Common.Interfaces;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Media.Imaging;
 
 namespace IfxWPClient.ViewModels
 {
     public class ArticleListViewModel: INotifyPropertyChanged
     {
         INewsDataSource _source;
+
+        BLL.ImageSource _imageSourse;
         Timer _updateNewsListTimer;
         public DateTime LastUpdateTime { get; set; }
 
-        private ObservableCollection<Article> _articles;
-        public ObservableCollection<Article> Articles
+        private ObservableCollection<ArticleViewModel> _articles;
+        public ObservableCollection<ArticleViewModel> Articles
         {
             get { return _articles; }
             set 
@@ -49,9 +54,10 @@ namespace IfxWPClient.ViewModels
 
         public RelayCommand<string> ClickArticleItemCommand { get; private set; }
 
-        public ArticleListViewModel(INewsDataSource source)
+        public ArticleListViewModel(INewsDataSource source, BLL.ImageSource imageSource)
         {
             _source = source;
+            _imageSourse = imageSource;
             /*_lastUpdateTime = DateTime.Now;
             _updateNewsListTimer = new Timer((e) => 
             {
@@ -74,8 +80,7 @@ namespace IfxWPClient.ViewModels
 
         public void LoadArticles(DateTime updatemark)
         {
-            //Busy = true;
-            this._source.GetFreeArticleList(updatemark, a => Articles = new ObservableCollection<Article>(a));
+            this._source.GetFreeArticleList(updatemark, a => Articles = new ObservableCollection<ArticleViewModel>(a.Select(ar => new ArticleViewModel { CreateDate = ar.CreateDate, Headline = ar.Headline, Image = ar.Image})));
         }
 
         #region INPC Members

@@ -21,6 +21,6 @@ namespace Common
 
         public string Content { get; set; }
 
-        public byte[] Image { get; set; }
+        public Uri Image { get; set; }
     }
 }

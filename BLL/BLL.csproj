@@ -51,6 +51,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageSource.cs" />
     <Compile Include="NewsCache.cs" />
     <Compile Include="NewsSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,9 +61,9 @@
       <Project>{FA128706-F593-43F8-B926-0DA1AD7AB072}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Service1\Service.csproj">
+    <ProjectReference Include="..\Service1\Services.csproj">
       <Project>{3120153F-594B-4BE2-BB5F-3EE653DAE857}</Project>
-      <Name>Service</Name>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

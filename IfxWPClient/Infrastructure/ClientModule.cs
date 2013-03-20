@@ -12,6 +12,7 @@ using Autofac;
 using Common.Interfaces;
 using BLL;
 using Services;
+using Service;
 
 namespace IfxWPClient.Infrastructure
 {
@@ -20,7 +21,9 @@ namespace IfxWPClient.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<NewsSource>().AsSelf().SingleInstance();
+            builder.RegisterType<BLL.ImageSource>().AsSelf().SingleInstance();
             builder.RegisterType<IFXWebService>().As<IIFXWebService>().SingleInstance();
+            builder.RegisterType<ImageService>().As<IImageService>().SingleInstance();
             builder.RegisterType<NewsSource>().As<INewsDataSource>().SingleInstance();
         }
     }

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio Express 2012 for Windows Phone
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IfxWPClient", "IfxWPClient\IfxWPClient.csproj", "{107B395F-1E06-43B2-9D2E-DA57F9199939}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{80D77969-03A3-4FEC-A167-494242D07E76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service1\Service.csproj", "{3120153F-594B-4BE2-BB5F-3EE653DAE857}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Service1\Services.csproj", "{3120153F-594B-4BE2-BB5F-3EE653DAE857}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{FA128706-F593-43F8-B926-0DA1AD7AB072}"
 EndProject

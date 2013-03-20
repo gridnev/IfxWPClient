@@ -15,10 +15,19 @@
                 <Button Command="{Binding ElementName=ContentPanel, Path=DataContext.ClickArticleItemCommand}" CommandParameter="{Binding Id}">
                     <Button.Template>
                         <ControlTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding CreateDate}" Foreground="#09abb0" FontSize="15"/>
-                                <TextBlock Text="{Binding Headline}" FontStyle="Normal" FontSize="18" TextWrapping="Wrap" />
-                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="6*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="80" />
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding Image}" Margin="0,0,10,0" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" />
+                                <TextBlock Text="{Binding CreateDate}" Foreground="#09abb0" FontSize="15" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0"/>
+                                <TextBlock Text="{Binding Headline}" FontStyle="Normal" FontSize="18" VerticalAlignment="Top" Margin="0,0,0,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" />
+                            </Grid>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>

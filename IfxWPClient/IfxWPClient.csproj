@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ArticleListViewModel.cs" />
+    <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\NewsListViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
     <Compile Include="Views\ArticleList.xaml.cs">
@@ -150,9 +151,9 @@
       <Project>{FA128706-F593-43F8-B926-0DA1AD7AB072}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Service1\Service.csproj">
+    <ProjectReference Include="..\Service1\Services.csproj">
       <Project>{3120153F-594B-4BE2-BB5F-3EE653DAE857}</Project>
-      <Name>Service</Name>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

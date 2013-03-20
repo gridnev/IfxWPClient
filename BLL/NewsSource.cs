@@ -13,10 +13,12 @@ namespace BLL
     public class NewsSource : INewsDataSource
     {
         IIFXWebService _client;
+        BLL.ImageSource _imageSource;
 
-        public NewsSource(IIFXWebService client)
+        public NewsSource(IIFXWebService client, BLL.ImageSource imageSource)
         {
             _client = client;
+            _imageSource = imageSource;
         }
 
         public void GetFreeNewsList(DateTime updatemark, Action<List<News>> callback)
@@ -73,7 +75,8 @@ namespace BLL
                      {
                          Id = GetElementValue(node, "id"),
                          Headline = GetElementValue(node, "t"),
-                         CreateDate = DateTime.Parse(GetElementValue(node, "dc"))
+                         CreateDate = DateTime.Parse(GetElementValue(node, "dc")),
+                         Image = _imageSource.GetImageByArticleId(Convert.ToInt32(GetElementValue(node, "id")))
                      }).ToList();
 
                 callback(articleList);

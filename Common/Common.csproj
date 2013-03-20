@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Article.cs" />
     <Compile Include="Interfaces\IIFXWebService.cs" />
+    <Compile Include="Interfaces\IImageService.cs" />
     <Compile Include="Interfaces\INewsDataSource.cs" />
     <Compile Include="MyEventArgs.cs" />
     <Compile Include="News.cs" />
