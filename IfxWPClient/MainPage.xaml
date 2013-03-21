@@ -10,7 +10,7 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:myControls="clr-namespace:IfxWPClient.Views;assembly=IfxWPClient"
     xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -20,7 +20,7 @@
         <!--Panorama control-->
         <controls:Panorama HorizontalAlignment="Left" Width="480">
             <controls:Panorama.Title>
-                <StackPanel Orientation="Vertical" Margin="0,80,0,0">
+                <StackPanel Orientation="Vertical" Margin="0,75,0,0">
                     <Image x:Name="icon" Source="/Images/logo.png" Height="65" Width="223"/>
                 </StackPanel>
             </controls:Panorama.Title>

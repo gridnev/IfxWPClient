@@ -70,17 +70,29 @@ namespace IfxWPClient.ViewModels
             ClickArticleItemCommand = new RelayCommand<string>((articleId) => ClickArticleItem(articleId));
         }
 
-        private void ClickArticleItem(string newsId)
+        private void ClickArticleItem(string articleId)
         {
-            //var root = App.Current.RootVisual as PhoneApplicationFrame;
+            var root = App.Current.RootVisual as PhoneApplicationFrame;
 
-            //Uri uri = new Uri(string.Format("/Views/NewsItem.xaml?newsId={0}", newsId), UriKind.Relative);
-            //root.Navigate(uri);
+            Uri uri = new Uri(string.Format("/Views/ArticlePage.xaml?articleId={0}", articleId), UriKind.Relative);
+            root.Navigate(uri);
         }
 
         public void LoadArticles(DateTime updatemark)
         {
-            this._source.GetFreeArticleList(updatemark, a => Articles = new ObservableCollection<ArticleViewModel>(a.Select(ar => new ArticleViewModel { CreateDate = ar.CreateDate, Headline = ar.Headline, Image = ar.Image})));
+            this._source.GetFreeArticleList(updatemark,
+                                            a =>
+                                            Articles =
+                                            new ObservableCollection<ArticleViewModel>(
+                                                a.Select(
+                                                    ar =>
+                                                    new ArticleViewModel
+                                                        {
+                                                            CreateDate = ar.CreateDate,
+                                                            Headline = ar.Headline,
+                                                            Image = ar.Image,
+                                                            Id = ar.Id
+                                                        })));
         }
 
         #region INPC Members
