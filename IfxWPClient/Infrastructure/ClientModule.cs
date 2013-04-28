@@ -13,6 +13,7 @@ using Common.Interfaces;
 using BLL;
 using Services;
 using Service;
+using DAL;
 
 namespace IfxWPClient.Infrastructure
 {
@@ -24,7 +25,8 @@ namespace IfxWPClient.Infrastructure
             builder.RegisterType<BLL.ImageSource>().AsSelf().SingleInstance();
             builder.RegisterType<IFXWebService>().As<IIFXWebService>().SingleInstance();
             builder.RegisterType<ImageService>().As<IImageService>().SingleInstance();
-            builder.RegisterType<NewsSource>().As<INewsDataSource>().SingleInstance();
+            builder.RegisterType<NewsCache>().As<INewsDataSource>().SingleInstance();
+            builder.RegisterType<NewsRepository>().As<INewsRepository>().SingleInstance();
         }
     }
 }

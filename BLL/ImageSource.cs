@@ -15,15 +15,24 @@ namespace BLL
             _service = service;
         }
 
-        public Uri GetImageByArticleId(int id, int size = 1)
+        public string GetImageByArticleId(int id, int size = 1)
         {
             return size == 0
-                       ? new Uri(string.Format("http://services.ifx.ru/WebImage/default.aspx?type=news&id={0}&size=1",
-                                               id))
-                       : new Uri(
-                             string.Format(
+                       ? string.Format("http://services.ifx.ru/WebImage/default.aspx?type=news&id={0}&size=1",
+                                               id)
+                       : string.Format(
                                  "http://services.ifx.ru/WebImage/default.aspx?type=news&id={0}&size=1&x=150&y=100&trans=crop",
-                                 id));
+                                 id);
+        }
+
+        public string GetMainImageByPhotoStoryId(int id, int size = 1)
+        {
+            return size == 0
+                       ? string.Format("http://services.ifx.ru/WebImage/default.aspx?type=photostory&id={0}&size=1",
+                                               id)
+                       : string.Format(
+                                 "http://services.ifx.ru/WebImage/default.aspx?type=photostory&id={0}&size=1",
+                                 id);
         }
     }
 }

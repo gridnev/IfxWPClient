@@ -13,22 +13,20 @@ using IfxWPClient.ViewModels;
 
 namespace IfxWPClient.Views
 {
-    public partial class ArticleList : UserControl
+    public partial class FreePhotoStoryList : UserControl
     {
-        public ArticleList()
+        public FreePhotoStoryList()
         {
             InitializeComponent();
-            Loaded += new RoutedEventHandler(ArticleList_Loaded);
+            Loaded += FreePhotoStoryList_Loaded;
         }
 
-        void ArticleList_Loaded(object sender, RoutedEventArgs e)
+        void FreePhotoStoryList_Loaded(object sender, RoutedEventArgs e)
         {
-            var model = ((ArticleListViewModel)DataContext);
+            var model = ((FreePhotoStoryListViewModel)DataContext);
             if (model != null)
             {
-                model.LoadArticles(model.LastUpdateTime);
-                if (model.FirstLoad)
-                    model.LoadArticles(model.LastUpdateTime);
+                model.LoadPhotoStoryList(model.LastUpdateTime);
             }
         }
     }

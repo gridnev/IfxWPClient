@@ -88,6 +88,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ArticleListViewModel.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\FreePhotoStoryViewModel.cs" />
+    <Compile Include="ViewModels\FreePhotoStoryListViewModel.cs" />
     <Compile Include="ViewModels\NewsListViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
     <Compile Include="Views\ArticleList.xaml.cs">
@@ -95,6 +97,9 @@
     </Compile>
     <Compile Include="Views\ArticlePage.xaml.cs">
       <DependentUpon>ArticlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FreePhotoStoryList.xaml.cs">
+      <DependentUpon>FreePhotoStoryList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewsItem.xaml.cs">
       <DependentUpon>NewsItem.xaml</DependentUpon>
@@ -120,6 +125,10 @@
     <Page Include="Views\ArticlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FreePhotoStoryList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NewsItem.xaml">
       <SubType>Designer</SubType>
@@ -157,6 +166,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{FA128706-F593-43F8-B926-0DA1AD7AB072}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{DB0D3F67-1B62-4B92-B576-51554CC5227F}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Service1\Services.csproj">
       <Project>{3120153F-594B-4BE2-BB5F-3EE653DAE857}</Project>

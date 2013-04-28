@@ -11,16 +11,8 @@ using System.Windows.Shapes;
 
 namespace Common
 {
-    public class Article
+    public class Article : NewsItem
     {
-        public string Id { get; set; }
-
-        public string Headline { get; set; }
-
-        public DateTime CreateDate { get; set; }
-
-        public string Content { get; set; }
-
         public Uri Image { get; set; }
     }
 }

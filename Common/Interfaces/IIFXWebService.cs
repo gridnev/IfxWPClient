@@ -15,5 +15,11 @@ namespace Common.Interfaces
 
         event EventHandler<MyEventArgs> FreeArticleListCompleted;
         void FreeArticleListAsync(DateTime updatemark);
+
+        event EventHandler<MyEventArgs> FreePhotoStoryListCompleted;
+        void FreePhotoStoryListAsync(DateTime updatemark);
+
+        event EventHandler<MyEventArgs> GetFreePhotoStoryByIdCompleted;
+        void GetFreePhotoStoryByIdAsync(string photoStoryId);
     }
 }

@@ -11,7 +11,7 @@ using Common;
 
 namespace IfxWPClient.ViewModels
 {
-    public class ArticleViewModel: INotifyPropertyChanged
+    public class FreePhotoStoryViewModel: INotifyPropertyChanged
     {
         private INewsDataSource _source;
         private BLL.ImageSource _imageSource;
@@ -57,17 +57,6 @@ namespace IfxWPClient.ViewModels
             }
         }
 
-        private string _content;
-        public string Content
-        {
-            get { return _content; }
-            set
-            {
-                _content = value;
-                NotifyPropertyChanged("Content");
-            }
-        }
-
         private Uri _image;
         public Uri Image 
         {
@@ -79,20 +68,12 @@ namespace IfxWPClient.ViewModels
             }
         }
 
-        public Uri ImageUrl
-        {
-            set 
-            { 
-                Content = string.Format("<img src=\"{0}\" style=\"width:100%;\"><br>{1}", value, Content);
-            }
-        }
-
-        public ArticleViewModel()
+        public FreePhotoStoryViewModel()
         {
             
         }
 
-        public ArticleViewModel(INewsDataSource source, BLL.ImageSource imageSource)
+        public FreePhotoStoryViewModel(INewsDataSource source, BLL.ImageSource imageSource)
         {
             _source = source;
             _imageSource = imageSource;
@@ -100,7 +81,7 @@ namespace IfxWPClient.ViewModels
 
         public void LoadArticle(string articleId)
         {
-            Busy = true;
+            /*Busy = true;
             this._source.GetFreeNewsById(articleId, r =>
                 {
                     Headline = r.Headline;
@@ -108,7 +89,7 @@ namespace IfxWPClient.ViewModels
                     Content = r.Content;
                     ImageUrl= new Uri(_imageSource.GetImageByArticleId(Convert.ToInt32(articleId), 0));
                     Id = r.Id;
-                });
+                });*/
         }
 
         #region INPC Members

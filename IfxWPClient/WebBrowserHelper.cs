@@ -29,30 +29,11 @@ namespace IfxWPClient
             if (browser == null)
                 return;
 
-            var html = ConvertExtendedAscii(e.NewValue.ToString());
-
-            browser.NavigateToString(string.Format("<html><head><body style=\"background-color: #242834; color: white;\">{0}</body></html>", html));
+            browser.NavigateToString(string.Format("<html><head><body style=\"background-color: #242834; color: white;\">{0}</body></html>", e.NewValue.ToString()));
             browser.LoadCompleted += (sender, args) =>
             {
                 browser.Opacity = 1;
             };
-        }
-
-
-        private static string ConvertExtendedAscii(string html)
-        {
-            var retVal = "";
-            var s = html.ToCharArray();
-
-            foreach (char c in s)
-            {
-                if (Convert.ToInt32(c) > 127)
-                    retVal += "&#" + Convert.ToInt32(c) + ";";
-                else
-                    retVal += c;
-            }
-
-            return retVal;
-        }
+        } 
     }
 }

@@ -33,7 +33,7 @@
             </controls:PanoramaItem>
             
             <controls:PanoramaItem Orientation="Horizontal" Header="ФОТОСЮЖЕТЫ">
-
+                <myControls:FreePhotoStoryList />
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>

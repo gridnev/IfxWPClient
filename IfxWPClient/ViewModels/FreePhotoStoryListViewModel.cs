@@ -22,7 +22,7 @@ using System.Windows.Media.Imaging;
 
 namespace IfxWPClient.ViewModels
 {
-    public class ArticleListViewModel: INotifyPropertyChanged
+    public class FreePhotoStoryListViewModel: INotifyPropertyChanged
     {
         INewsDataSource _source;
 
@@ -31,14 +31,14 @@ namespace IfxWPClient.ViewModels
         public DateTime LastUpdateTime { get; set; }
         public bool FirstLoad { get; set; }
 
-        private ObservableCollection<ArticleViewModel> _articles;
-        public ObservableCollection<ArticleViewModel> Articles
+        private ObservableCollection<FreePhotoStoryViewModel> _freePhotoStoryList;
+        public ObservableCollection<FreePhotoStoryViewModel> FreePhotoStoryList
         {
-            get { return _articles; }
+            get { return _freePhotoStoryList; }
             set 
             {
-                _articles = value;
-                NotifyPropertyChanged("Articles");
+                _freePhotoStoryList = value;
+                NotifyPropertyChanged("FreePhotoStoryList");
             }
         }
 
@@ -52,46 +52,46 @@ namespace IfxWPClient.ViewModels
 
         public RelayCommand<string> ClickArticleItemCommand { get; private set; }
 
-        public ArticleListViewModel(INewsDataSource source, BLL.ImageSource imageSource)
+        public FreePhotoStoryListViewModel(INewsDataSource source, BLL.ImageSource imageSource)
         {
             _source = source;
             _imageSourse = imageSource;
             LastUpdateTime = DateTime.Now.AddDays(-7);
-            Articles = new ObservableCollection<ArticleViewModel>();
+            FreePhotoStoryList = new ObservableCollection<FreePhotoStoryViewModel>();
             FirstLoad = true;
 
-            _updateNewsListTimer = new Timer((e) => 
+           /* _updateNewsListTimer = new Timer((e) => 
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         LoadArticles(LastUpdateTime);
                     });
-            }, null, 300000, 300000);
+            }, null, 300000, 300000);*/
 
-            ClickArticleItemCommand = new RelayCommand<string>((articleId) => ClickArticleItem(articleId));
+            //ClickArticleItemCommand = new RelayCommand<string>((articleId) => ClickArticleItem(articleId));
         }
 
-        private void ClickArticleItem(string articleId)
+        /*private void ClickArticleItem(string articleId)
         {
             var root = App.Current.RootVisual as PhoneApplicationFrame;
 
             Uri uri = new Uri(string.Format("/Views/ArticlePage.xaml?articleId={0}", articleId), UriKind.Relative);
             root.Navigate(uri);
-        }
+        }*/
 
-        public void LoadArticles(DateTime updatemark)
+        public void LoadPhotoStoryList(DateTime updatemark)
         {
-            this._source.GetFreeArticleList(updatemark,
-                                            a =>
+            this._source.GetFreePhotoStoryList(updatemark,
+                                            ps =>
                                             {
-                                                a.Select(ar => new ArticleViewModel
+                                                ps.Select(ar => new FreePhotoStoryViewModel
                                                       {
                                                           CreateDate = ar.CreateDate,
                                                           Headline = ar.Headline,
                                                           Image = new Uri(ar.ImageUrl),
                                                           Id = ar.Id
-                                                      }).ToList().ForEach(Articles.Add);
-                                                NotifyPropertyChanged("Articles");
+                                                      }).ToList().ForEach(FreePhotoStoryList.Add);
+                                                NotifyPropertyChanged("FreePhotoStoryList");
                                             });
             LastUpdateTime = DateTime.Now;
             FirstLoad = false;

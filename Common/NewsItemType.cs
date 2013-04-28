@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Common
 {
-    public class News : NewsItem
+    public enum NewsItemType
     {
-
+        News,
+        Article
     }
 }

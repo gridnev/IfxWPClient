@@ -36,5 +36,10 @@ namespace IfxWPClient.Infrastructure
         {
             get { return Factory.Create<ArticleViewModel>(); }
         }
+
+        public FreePhotoStoryListViewModel FreePhotoStoryListViewModel
+        {
+            get { return Factory.Create<FreePhotoStoryListViewModel>(); }
+        }
     }
 }

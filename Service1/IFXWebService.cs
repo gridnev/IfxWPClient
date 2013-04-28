@@ -18,7 +18,7 @@ namespace Services
         public void FreeNewsListAsync(DateTime updatemark)
         {
             string reqPattern = "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Body><fnulreq xmlns=\"http://ifx.ru/IFX3WebService\"><fnuldm>{0}</fnuldm></fnulreq></s:Body></s:Envelope>";
-            string soapRequest = string.Format(reqPattern, updatemark.ToString("yyyy-MM-ddThh:mm:ss"));
+            string soapRequest = string.Format(reqPattern, updatemark.ToString("yyyy-MM-ddTHH:mm:ss"));
 
             WebServiceCall(_serviceURL, "NewsFreeNewsUpdateList", soapRequest, FreeNewsListCompleted);
         }
@@ -41,13 +41,22 @@ namespace Services
             WebServiceCall(_serviceURL, "FreeArticlesUpdateList", soapRequest, FreeArticleListCompleted);
         }
 
-        public event EventHandler<MyEventArgs> GetImageByArticleIdCompleted;
-        public void GetImageByArticleIdAsync(string newsId)
+        public event EventHandler<MyEventArgs> FreePhotoStoryListCompleted;
+        public void FreePhotoStoryListAsync(DateTime updatemark)
         {
-            string reqPattern = "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Body><fnireq xmlns=\"http://ifx.ru/IFX3WebService\"><fniid>{0}</fniid></fnireq></s:Body></s:Envelope>";
-            string soapRequest = string.Format(reqPattern, newsId);
+            string reqPattern = "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Body><fpsulreq xmlns=\"http://ifx.ru/IFX3WebService\"><mbdm>{0}</mbdm></fpsulreq></s:Body></s:Envelope>";
+            string soapRequest = string.Format(reqPattern, updatemark.ToString("yyyy-MM-ddThh:mm:ss"));
 
-            WebServiceCall(_serviceURL, "FreeNewsItem", soapRequest, GetNewsByIdCompleted);
+            WebServiceCall(_serviceURL, "FreePhotoStoriesUpdateList", soapRequest, FreePhotoStoryListCompleted);
+        }
+
+        public event EventHandler<MyEventArgs> GetFreePhotoStoryByIdCompleted;
+        public void GetFreePhotoStoryByIdAsync(string photoStoryId)
+        {
+            string reqPattern = "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Body><ffsreq xmlns=\"http://ifx.ru/IFX3WebService\"><ffsid>{0}</ffsid></ffsreq></s:Body></s:Envelope>";
+            string soapRequest = string.Format(reqPattern, photoStoryId);
+
+            WebServiceCall(_serviceURL, "FreePhotoStory", soapRequest, GetFreePhotoStoryByIdCompleted);
         }
     }
 }

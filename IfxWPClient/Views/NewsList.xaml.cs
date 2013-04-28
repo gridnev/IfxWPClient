@@ -24,7 +24,7 @@ namespace IfxWPClient.Views
         {
             var model = ((NewsListViewModel)DataContext);
             if (model != null)
-                model.LoadNews(DateTime.Now.AddHours(-24));
+                model.LoadNews(model.LastUpdateTime);
         }
     }
 }

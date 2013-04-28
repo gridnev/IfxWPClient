@@ -15,7 +15,7 @@ namespace IfxWPClient.ViewModels
     {
         INewsDataSource _source;
 
-        private News NewsItem 
+        private NewsItem NewsItem 
         {
             set
             {

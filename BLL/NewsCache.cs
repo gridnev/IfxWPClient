@@ -9,60 +9,70 @@ namespace BLL
 {
     public class NewsCache: INewsDataSource
     {
-        List<News> _newsCache;
         NewsSource _newsSource;
+        INewsRepository _newsRepository;
 
-        public NewsCache(NewsSource newsSource)
+        public NewsCache(NewsSource newsSource, INewsRepository newsRepository)
         {
-            _newsCache = new List<News>();
             _newsSource = newsSource;
+            _newsRepository = newsRepository;
+
+            RemoveOldItemsFromCache();
         }
 
-        private void UpdateCache(DateTime updatemark)
+        public void GetFreeNewsList(DateTime updatemark, Action<List<NewsItem>> callback)
         {
-            _newsSource.GetFreeNewsList(updatemark, c => _newsCache.AddRange(c));
-        }
+            var result = _newsRepository.GetNewsList(updatemark);
 
-        public void GetFreeNewsList(DateTime updatemark, Action<List<News>> callback)
-        {
-            if (!_newsCache.Any())
-            {
+            if (result.Any())
+                callback(result);
+            else
                 _newsSource.GetFreeNewsList(updatemark, c =>
                 {
-                    _newsCache.AddRange(c);
-                    callback(_newsCache);
+                    callback(c);
+                    _newsRepository.SaveNewsList(c);
                 });
-            }
-            else 
-            {
-                callback(_newsCache);
-            }
         }
 
-        public void GetFreeNewsById(string newsId, Action<News> callback)
+        public void GetFreeNewsById(string newsId, Action<NewsItem> callback)
         {
-            var news = _newsCache.SingleOrDefault(n=>n.Id == newsId);
-            if (news != null && news.Content != null)
+            var news = _newsRepository.GetFreeNewsById(newsId);
+            if (news.Content != null)
                 callback(news);
             else
             {
-                 _newsSource.GetFreeNewsById(newsId, r => {
-                     if (!_newsCache.Any(n => n.Id == r.Id))
-                         _newsCache.Add(r);
-                     else
-                         _newsCache.SingleOrDefault(n => n.Id == r.Id).Content = r.Content;
-
-                     callback(r);
+                _newsSource.GetFreeNewsById(newsId, r =>
+                {
+                    news.Content = r.Content;
+                    _newsRepository.UpdateNews(r);
+                    callback(r);
                 });
             }
-
-           
         }
 
-
-        public void GetFreeArticleList(DateTime updatemark, Action<List<Article>> callback)
+        public void GetFreeArticleList(DateTime updatemark, Action<List<NewsItem>> callback)
         {
-            throw new NotImplementedException();
+            var result = _newsRepository.GetArticlesList(updatemark);
+
+            if (result.Any())
+                callback(result);
+            else
+                _newsSource.GetFreeArticleList(updatemark, a =>
+                {
+                    callback(a);
+                    _newsRepository.SaveNewsList(a);
+                });
+        }
+
+        public void GetFreePhotoStoryList(DateTime updatemark, Action<List<FreePhotoStory>> callback)
+        {
+            _newsSource.GetFreePhotoStoryList(updatemark, callback);
+        }
+
+        private void RemoveOldItemsFromCache()
+        {
+            var obsoleteNewsItem = _newsRepository.GetAllNewsItem().Where(i => i.IsObsolete()).ToList();
+            _newsRepository.RemoveNewsList(obsoleteNewsItem);
         }
     }
 }

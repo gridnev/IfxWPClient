@@ -25,17 +25,18 @@ namespace IfxWPClient.ViewModels
         Timer _updateNewsListTimer;
         public DateTime LastUpdateTime { get; set; }
 
-        private ObservableCollection<News> _news;
-        public ObservableCollection<News> News
+        public bool FirstLoad { get; set; }
+
+        private ObservableCollection<NewsItem> _news;
+        public ObservableCollection<NewsItem> News
         {
             get { return _news; }
             set 
             {
                 _news = value;
                 NotifyPropertyChanged("News");
-                LastUpdateTime = News.Max(n => n.CreateDate);
 
-                Busy = false;
+                //Busy = false;
             }
         }
 
@@ -52,14 +53,18 @@ namespace IfxWPClient.ViewModels
         public NewsListViewModel(INewsDataSource source)
         {
             _source = source;
-            /*_lastUpdateTime = DateTime.Now;
-            _updateNewsListTimer = new Timer((e) => 
+            this.News = new ObservableCollection<NewsItem>();
+            LastUpdateTime = DateTime.Now.AddHours(-24);
+            FirstLoad = true;
+            
+
+            /*_updateNewsListTimer = new Timer((e) => 
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                     { 
-                        LoadNews(_lastUpdateTime);
+                        LoadNews(LastUpdateTime);
                     });
-            }, null, 0, 30000);*/
+            }, null, 30000, 30000);*/
 
             ClickNewsItemCommand = new RelayCommand<string>((newsId) => ClickNewsItem(newsId));
         }
@@ -75,7 +80,20 @@ namespace IfxWPClient.ViewModels
         public void LoadNews(DateTime updatemark)
         {
             Busy = true;
-            this._source.GetFreeNewsList(updatemark, r => News = new ObservableCollection<News>(r));
+            this._source.GetFreeNewsList(updatemark, r =>{
+                r.ForEach(this.News.Add);
+                NotifyPropertyChanged("News");
+                this.News = new ObservableCollection<NewsItem>(this.News.OrderByDescending(n => n.Id));
+                Busy = false;
+
+                if (this.FirstLoad)
+                {
+                    FirstLoad = false;
+                    this.LoadNews(this.LastUpdateTime);
+                }
+            });
+
+            LastUpdateTime = DateTime.Now;
         }
 
         #region INPC Members
